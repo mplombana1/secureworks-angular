@@ -1,0 +1,10 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  .submit-btn {
+    margin-top: 1em;
+    button {
+      width: 100%;
+    }
+  }
+}

@@ -1,21 +1,20 @@
+import { DialogRef } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { FriendsList } from './friends-list.model';
+import { MatDialog } from '@angular/material/dialog';
+import { FriendsList } from '../friends-list/friends-list.model';
 @Component({
-  selector: 'app-friends-list',
-  templateUrl: './friends-list.component.html',
-  styleUrls: ['./friends-list.component.scss']
+  selector: 'app-add-friend-modal',
+  templateUrl: './add-friend-modal.component.html',
+  styleUrls: ['./add-friend-modal.component.scss']
 })
-export class FriendsListComponent implements OnInit {
-  friendsList: FriendsList[] = [];
-  id?: number;
+export class AddFriendModalComponent implements OnInit {
   group = this.fb.group({
     name: ['', Validators.required],
     weight: ['', Validators.required],
     age: ['',[Validators.required, Validators.pattern('^[1-9][0-9]?$|^100$')]],
     friendID: ['',Validators.required],
   })
-
   friends: FriendsList[] = [
     {id: 1, name: "Curtis Mcmahon", weight: 200, age: 34, friendID: [2]},
     {id: 2, name: "John Doe", weight: 195, age: 34, friendID: [3,4]},
@@ -24,24 +23,11 @@ export class FriendsListComponent implements OnInit {
     {id: 5, name: "Mikolaj Savage", weight: 200, age: 34, friendID: [3,4]},
     {id: 6, name: "Aliya Roche", weight: 200, age: 34, friendID: [4,5]},
   ]
+  constructor(private fb : FormBuilder) { }
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.group.valueChanges.subscribe(res => {
-      console.log('🚀 : res', this.group.value)
-    })
-  }
+  ngOnInit(): void {}
 
   submitForm(): void{
-    if (this.group.valid){
-      const lastItemIndex = this.friends.length -1;
-      const generateId = this.friends[lastItemIndex].id++
-      this.id = generateId;
-      const json = JSON.stringify(this.group.value);
-      const value = JSON.parse(json)
-      this.friends.push(value)
-    }
+    console.log(this.group.value, 'form values')
   }
-
 }

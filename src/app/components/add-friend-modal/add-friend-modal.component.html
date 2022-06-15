@@ -1,0 +1,42 @@
+  <div class="modal-form">
+    <form [formGroup]="group" class="form-container">
+      <mat-form-field appearance="legacy">
+        <mat-label>Name</mat-label>
+        <input matInput autocomplete="off" formControlName="name">
+        <mat-error *ngIf="group.get('name')?.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="legacy">
+        <mat-label>Age</mat-label>
+        <input matInput autocomplete="off" formControlName="age" type="number">
+        <mat-error *ngIf="group.get('age')?.hasError('pattern')">
+          Please enter a number from <strong>1 - 100</strong>
+        </mat-error>
+        <mat-error *ngIf="group.get('age')?.hasError('required')">
+          Age is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="legacy">
+        <mat-label>Weight</mat-label>
+        <input matInput autocomplete="off" formControlName="weight" type="number">
+        <mat-error *ngIf="group.get('weight')?.hasError('required')">
+          Please enter a weight
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="legacy">
+        <mat-label>Friends</mat-label>
+        <mat-select formControlName="friendID" multiple>
+          <mat-option *ngFor="let friend of friends" [value]="friend.id">{{friend.name}}</mat-option>
+        </mat-select>
+     
+      </mat-form-field>
+
+      <div class="submit-btn">
+        <button  mat-flat-button color="primary"  (click)="submitForm()">Submit</button>
+      </div>
+    </form>
+  </div>
