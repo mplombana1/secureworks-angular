@@ -4,7 +4,10 @@
         <mat-label>Name</mat-label>
         <input matInput autocomplete="off" formControlName="name">
         <mat-error *ngIf="group.get('name')?.hasError('required')">
-          Email is <strong>required</strong>
+          Name is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="group.get('name')?.hasError('pattern')">
+          Please use charachters <strong>a-z</strong>
         </mat-error>
       </mat-form-field>
   
@@ -30,9 +33,11 @@
       <mat-form-field appearance="legacy">
         <mat-label>Friends</mat-label>
         <mat-select formControlName="friendID" multiple>
-          <mat-option *ngFor="let friend of friends" [value]="friend.id">{{friend.name}}</mat-option>
+          <mat-option *ngFor="let friend of friends$ | async" [value]="friend.id">{{friend.name}}</mat-option>
         </mat-select>
-     
+        <mat-error *ngIf="group.get('friendID')?.hasError('required')">
+          Please select atleast 1 friend
+        </mat-error>
       </mat-form-field>
 
       <div class="submit-btn">

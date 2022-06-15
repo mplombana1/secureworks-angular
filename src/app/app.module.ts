@@ -23,7 +23,8 @@ import { StoreModule } from '@ngrx/store';
 import { TableComponent } from './components/table/table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddFriendModalComponent } from './components/add-friend-modal/add-friend-modal.component';
-
+6
+import {customerFeatureKey, reducer} from './store/friend.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { AddFriendModalComponent } from './components/add-friend-modal/add-frien
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
+    StoreModule.forFeature(customerFeatureKey, reducer),
     BrowserAnimationsModule,
     MatSliderModule,
     FormsModule,
