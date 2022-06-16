@@ -1,2 +1,10 @@
 <app-header></app-header>
-<app-friends-list></app-friends-list>
+<div class="chart-container">
+  <app-pie-chart [friends]="friends"></app-pie-chart>
+  <app-weight-chart [friends]="friends"></app-weight-chart>
+</div>
+
+<div class="table-container">
+  <app-table style="flex: 1;" [friends]="friends"></app-table>
+  <app-friends-list style="flex: 1;"></app-friends-list>
+</div>

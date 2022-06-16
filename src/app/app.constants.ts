@@ -1,0 +1,1 @@
+export const TableHeaders: string[] = ['index', 'name', 'weight', 'age', 'friends']

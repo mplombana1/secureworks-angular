@@ -10,7 +10,13 @@ export interface FriendState {
 
 export const initialState: FriendState = {
   customers: [
-    {id: Date.now(), name: "Curtis Mcmahon", weight: 200, age: 34, friendID: [2]},
+    {id: 1, name: "Curtis Mcmahon", weight: 150, age: 20, friendID: [2]},
+    {id: 2, name: "John Doe", weight: 120, age: 25, friendID: [3,4]},
+    {id: 3, name: "Reo Bernard", weight: 200, age: 50, friendID: [4,3]},
+    {id: 4, name: "Chiara Corbett", weight: 250, age: 40, friendID: [1,3]},
+    {id: 5, name: "Mikolaj Savage", weight: 300, age: 18, friendID: [3,4]},
+    {id: 6, name: "Aliya Roche", weight: 275, age: 21, friendID: [1,2,3,4,5,1,1,1,1]},
+    
   ],
 };
 
