@@ -32,11 +32,12 @@ export class AddFriendModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.friends$ = this.data.friends$
-  }
+  } 
 
   submitForm(): void{
     if (this.group.valid){
       let customer = new Friend()
+      customer.id = 2
       customer = Object.assign(customer, this.group.value)
       this.store.dispatch(addFriend(customer))
       console.log('🚀 : customer', customer)

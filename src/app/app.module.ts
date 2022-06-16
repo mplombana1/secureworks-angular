@@ -25,13 +25,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { AddFriendModalComponent } from './components/add-friend-modal/add-friend-modal.component';
 6
 import {customerFeatureKey, reducer} from './store/friend.reducer';
+import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
     FriendsListComponent,
     TableComponent,
     HeaderComponent,
-    AddFriendModalComponent
+    AddFriendModalComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserModule,

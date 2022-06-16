@@ -15,14 +15,14 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class TableComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'name', 'weight', 'age', 'friends'];
-  customers: Friend[] = []
+  friends: Friend[] = []
   destroy$ = new Subject();
   constructor(private data: DataService) {}
   
   ngOnInit(): void {  
     this.data.friends$?.pipe(
       takeUntil(this.destroy$)
-    ).subscribe(res =>this.customers = res)
+    ).subscribe(res =>this.friends = res)
   }
 
   getUserDetails(user: FriendsList){
