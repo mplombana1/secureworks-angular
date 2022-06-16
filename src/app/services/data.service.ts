@@ -9,9 +9,16 @@ import { selectFriend } from '../store/friend.selector';
 })
 export class DataService {
   friends$: Observable<Friend[]> | undefined
+  selectedFriendsBehaviorSubject = new BehaviorSubject<Friend[]>([]);
+  selectedFriends$ = this.selectedFriendsBehaviorSubject.asObservable();
+  
   constructor(private store: Store<Friend>) { }
   
   getFriends(): void {
    this.friends$ = this.store.pipe(select(selectFriend))
+  }
+
+  showSelectedFriends(friends: Friend[]): void {
+    this.selectedFriendsBehaviorSubject.next(friends);
   }
 }

@@ -1,36 +1,25 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Component, Input } from '@angular/core';
 import { Friend } from 'src/app/store/friend.model';
-import { FriendState } from 'src/app/store/friend.reducer';
-import { selectFriend } from 'src/app/store/friend.selector';
 import { FriendsList } from '../friends-list/friends-list.model';
-import { addFriend } from 'src/app/store/friend.actions';
 import { DataService } from 'src/app/services/data.service';
-
+import { TableHeaders } from 'src/app/app.constants';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['id', 'name', 'weight', 'age', 'friends'];
-  // friends: Friend[] = []
+export class TableComponent {
   @Input() friends: Friend[] = [];
-  destroy$ = new Subject();
+  displayedColumns = TableHeaders
   selectedFriends: any;
-  constructor(private data: DataService) {}
-
-  ngOnInit(): void {}
+  constructor(private data: DataService) { }
 
   getUserDetails(user: FriendsList) {
-    this.selectedFriends = user.friendID.map((id) =>
-      this.friends.find((f) => f.id == id)
-    );
-    console.log(this.selectedFriends)
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
+    if (user) {
+      this.selectedFriends = user.friendID.map((id: number) =>
+        this.friends.find((f: Friend) => f.id == id)
+      );
+      this.data.showSelectedFriends(this.selectedFriends)
+    }
   }
 }

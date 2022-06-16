@@ -1,23 +1,23 @@
 <div class="container">
+  <div>
+    <h1>All Friends</h1>
+  </div>
   <table mat-table [dataSource]="friends" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
       <td mat-cell *matCellDef="let i = index"> {{i + 1}} </td>
     </ng-container>
   
-    <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let element"> {{element.name | titlecase}} </td>
     </ng-container>
   
-    <!-- Weight Column -->
     <ng-container matColumnDef="weight">
       <th mat-header-cell *matHeaderCellDef> Weight </th>
       <td mat-cell *matCellDef="let element"> {{element.weight}} lbs </td>
     </ng-container>
   
-    <!-- Symbol Column -->
     <ng-container matColumnDef="age">
       <th mat-header-cell *matHeaderCellDef> Age </th>
       <td mat-cell *matCellDef="let element"> {{element.age}} </td>

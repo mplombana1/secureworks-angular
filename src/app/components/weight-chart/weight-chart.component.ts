@@ -2,11 +2,11 @@ import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input, ViewEncapsu
 import * as d3 from 'd3';
 import { Friend } from 'src/app/store/friend.model';
 @Component({
-  selector: 'app-pie-chart',
-  templateUrl: './pie-chart.component.html',
-  styleUrls: ['./pie-chart.component.scss'],
+  selector: 'app-weight-chart',
+  templateUrl: './weight-chart.component.html',
+  styleUrls: ['./weight-chart.component.scss']
 })
-export class PieChartComponent implements OnChanges, AfterViewInit {
+export class WeightChartComponent implements OnChanges, AfterViewInit {
   @ViewChild('chart') chartContainer?: ElementRef;
   @Input() friends: Friend[] = []
   svg: any
@@ -28,7 +28,6 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
       this.updateBars()
     }
   }
-
   updateBars() {
     if (this.chartContainer) {
       let element = this.chartContainer.nativeElement;
@@ -38,7 +37,6 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
       this.drawBars(this.friends)
     }
   }
-  
   drawSvg() {
     if (this.chartContainer) {
       let element = this.chartContainer.nativeElement;
@@ -60,10 +58,9 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
       .domain(data.map((d: any) => d.name))
       .padding(0.2);
 
-
     const colors = d3.scaleOrdinal()
       .domain(this.friends.map(d => d.name))
-      .range(["#8a00d4", "#d527b7", "#f782c2", "#f9c46b", "#e3e3e3"]);
+      .range(["#343090", "#5f59f7", "#6592fd", "#44c2fd", "#8c61ff"]);
 
     // Draw the X-axis on the DOM
     this.svg.append("g")
@@ -75,7 +72,7 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
 
     // Create the Y-axis band scale
     const y = d3.scaleLinear()
-      .domain([0, 100])
+      .domain([0, 300])
       .range([this.height, 0]);
 
     // Draw the Y-axis on the DOM
@@ -88,9 +85,9 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
       .enter()
       .append("rect")
       .attr("x", (d: any) => x(d.name))
-      .attr("y", (d: any) => y(d.age))
+      .attr("y", (d: any) => y(d.weight))
       .attr("width", x.bandwidth())
-      .attr("height", (d: any) => this.height - y(d.age))
+      .attr("height", (d: any) => this.height - y(d.weight))
       .attr('fill', (d: any, i: any) => (colors(i)))
   }
 }

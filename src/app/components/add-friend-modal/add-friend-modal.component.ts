@@ -1,10 +1,8 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { select, Store } from '@ngrx/store';
-import { map, Observable, of, switchMap, tap } from 'rxjs';
-import { filter } from 'rxjs/operators'
+import { Store } from '@ngrx/store';
+import { Observable} from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 import { Friend } from 'src/app/store/friend.model';
 import { FriendState } from 'src/app/store/friend.reducer';
@@ -27,8 +25,7 @@ export class AddFriendModalComponent implements OnInit {
     private store: Store<FriendState>, 
     private data: DataService,
     public dialog: DialogRef<AddFriendModalComponent>
-    )
-    { }
+    ){ }
 
   ngOnInit(): void {
     this.friends$ = this.data.friends$
@@ -40,7 +37,6 @@ export class AddFriendModalComponent implements OnInit {
       customer.id = 2
       customer = Object.assign(customer, this.group.value)
       this.store.dispatch(addFriend(customer))
-      console.log('🚀 : customer', customer)
       this.dialog.close();
     }
   }
