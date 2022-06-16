@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Friend } from 'src/app/store/friend.model';
@@ -15,18 +15,19 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class TableComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'name', 'weight', 'age', 'friends'];
-  friends: Friend[] = []
+  // friends: Friend[] = []
+  @Input() friends: Friend[] = [];
   destroy$ = new Subject();
+  selectedFriends: any;
   constructor(private data: DataService) {}
-  
-  ngOnInit(): void {  
-    this.data.friends$?.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(res =>this.friends = res)
-  }
 
-  getUserDetails(user: FriendsList){
-    console.log(user)
+  ngOnInit(): void {}
+
+  getUserDetails(user: FriendsList) {
+    this.selectedFriends = user.friendID.map((id) =>
+      this.friends.find((f) => f.id == id)
+    );
+    console.log(this.selectedFriends)
   }
 
   ngOnDestroy(): void {

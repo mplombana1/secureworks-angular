@@ -22,16 +22,15 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
     ngAfterViewInit(): void {
       this.drawSvg()
       this.drawBars(this.friends)
+      console.log(this.setting)
     }
 
-    ngOnChanges(SimpleChanges: any) {
-      const changes = SimpleChanges['friends'];
-      let firstChange = changes.firstChange
+    ngOnChanges(changes: SimpleChanges): void {
+      const change = changes['friends'];
+      let firstChange = change.firstChange
       if (!firstChange){
-        this.friends = changes.currentValue;
-
-        // this.drawBars(currentValue)
-        this.updateBars()
+        this.friends = change.currentValue;
+        // this.updateBars()
       }
    
     }
@@ -39,8 +38,6 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
     changeCategory(){
       this.setting = this.setting.valueOf() == 'age' ? 'weight' : 'age'
       this.setting2 = this.setting2 == 300 ? 100 : 300  ;
-      
-      // this.setting.val(this.setting.val() == 'string1' ? 'string2' : 'string1');
       this.updateBars()
     }
 
@@ -60,12 +57,17 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
     if( this.chartContainer) {
       let element = this.chartContainer.nativeElement;
       this.svg = d3.select(element)
+      // .classed("svg-container", true)
       .append('svg')
+      // .attr("preserveAspectRatio", "xMinYMin meet")
+      // .attr("viewBox", "0 0 600 400")
+      // .classed("svg-content-responsive", true)
       .attr("width", this.width + (this.margin * 2))
       .attr("height", this.height + (this.margin * 2))
+      
       .append("g")
       .attr("transform", "translate(" + this.margin + "," + this.margin + ")");
-      console.log(this.svg.select('svg'), 'svg...')
+
     }
   }
 
@@ -109,6 +111,10 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
      .attr("width", x.bandwidth())
      .attr("height", (d: any) => this.height - y(d[this.setting]))
      .attr('fill', (d: any, i: any) => (colors(i)))
+
+    d3.select('window').on('resize', () => {
+      console.log('resize')
+    })
   }
 
 
