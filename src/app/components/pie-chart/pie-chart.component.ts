@@ -14,7 +14,8 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
   width = 750 - (this.margin * 2)
   height = 400 - (this.margin * 2)
 
-setting = 'age'
+  setting = 'age'
+  setting2 = 100 | 300;
     constructor() {}
   
     ngAfterViewInit(): void {
@@ -32,6 +33,14 @@ setting = 'age'
         this.updateBars()
       }
    
+    }
+
+    changeCategory(){
+      this.setting = this.setting.valueOf() == 'age' ? 'weight' : 'age'
+      this.setting2 = this.setting2 == 300 ? 100 : 300  ;
+      
+      // this.setting.val(this.setting.val() == 'string1' ? 'string2' : 'string1');
+      this.updateBars()
     }
 
   updateBars(){
@@ -77,7 +86,7 @@ setting = 'age'
  
      // Create the Y-axis band scale
      const y = d3.scaleLinear()
-     .domain([0, 300])
+     .domain([0, this.setting2])
      .range([this.height, 0]);
  
      // Draw the Y-axis on the DOM
