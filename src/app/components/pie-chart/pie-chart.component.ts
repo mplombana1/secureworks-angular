@@ -16,6 +16,7 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
 
   setting = 'age'
   setting2 = 100 | 300;
+  colors: any
     constructor() {}
   
     ngAfterViewInit(): void {
@@ -76,6 +77,11 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
      .domain(data.map((d: any) => d.name))
      .padding(0.2);
  
+
+     const colors = d3.scaleOrdinal()
+    .domain(this.friends.map(d => d.name))
+    .range(["#c7d3ec", "#a5b8db", "#879cc4", "#677795", "#5a6782"]);
+     
      // Draw the X-axis on the DOM
      this.svg.append("g")
      .attr("transform", "translate(0," + this.height + ")")
@@ -92,7 +98,7 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
      // Draw the Y-axis on the DOM
      this.svg.append("g")
      .call(d3.axisLeft(y));
- 
+    //  var color = d3.scale.ordinal().range(["#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
      // Create and fill the bars
      this.svg.selectAll("bars")
      .data(data)
@@ -102,7 +108,7 @@ export class PieChartComponent implements OnChanges, AfterViewInit {
      .attr("y", (d:any) => y(d[this.setting]))
      .attr("width", x.bandwidth())
      .attr("height", (d: any) => this.height - y(d[this.setting]))
-     .attr("fill", "#d04a35");
+     .attr('fill', (d: any, i: any) => (colors(i)))
   }
 
 
