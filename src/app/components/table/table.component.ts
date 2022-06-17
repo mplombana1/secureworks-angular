@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Friend } from 'src/app/store/friend.model';
-import { FriendsList } from '../friends-list/friends-list.model';
 import { DataService } from 'src/app/services/data.service';
 import { TableHeaders } from 'src/app/app.constants';
 @Component({
@@ -14,7 +13,7 @@ export class TableComponent {
   selectedFriends: any;
   constructor(private data: DataService) { }
 
-  getUserDetails(user: FriendsList) {
+  getUserDetails(user: Friend) {
     if (user) {
       this.selectedFriends = user.friendID.map((id: number) =>
         this.friends.find((f: Friend) => f.id == id)
