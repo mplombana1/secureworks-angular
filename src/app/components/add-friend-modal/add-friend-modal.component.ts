@@ -2,7 +2,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { map, Observable} from 'rxjs';
+import { map, Observable, take} from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 import { Friend } from 'src/app/store/friend.model';
 import { FriendState } from 'src/app/store/friend.reducer';
@@ -18,7 +18,6 @@ export class AddFriendModalComponent implements OnInit {
     weight: ['', Validators.required],
     age: ['',[Validators.required, Validators.pattern('^[1-9][0-9]?$|^100$')]],
     friendID: ['',Validators.required],
-    id: [0]
   })
   friends$: Observable<Friend[]> | undefined
   id = 0
@@ -35,6 +34,7 @@ export class AddFriendModalComponent implements OnInit {
 
   createId(): void {
     this.friends$?.pipe(
+      take(1),
       map((friends) => friends.length + 1),
     ).subscribe(id => this.id = id)
   }

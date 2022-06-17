@@ -25,7 +25,7 @@ import { TableComponent } from './components/table/table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddFriendModalComponent } from './components/add-friend-modal/add-friend-modal.component';
 import { friendFeatureKey, reducer } from './store/friend.reducer';
-import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { AgeChartComponent } from './components/age-chart/age-chart.component';
 import { WeightChartComponent } from './components/weight-chart/weight-chart.component';
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { WeightChartComponent } from './components/weight-chart/weight-chart.com
     TableComponent,
     HeaderComponent,
     AddFriendModalComponent,
-    PieChartComponent,
+    AgeChartComponent,
     WeightChartComponent,
   ],
   imports: [

@@ -45,7 +45,6 @@ describe('data reducer', () => {
     };
     const action = fromActions.addFriend(payload);
     const state = fromReducer.friendReducer(initialState, action);
-    console.log('🚀 : state', state);
     expect(state.friends).toContain(payload);
   });
 
