@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { FriendsListComponent } from './components/friends-list/friends-list.component';
 // Material Modules
-import { MatInputModule }  from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,15 +18,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 // NGRX
 import { StoreModule } from '@ngrx/store';
 import { TableComponent } from './components/table/table.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AddFriendModalComponent } from './components/add-friend-modal/add-friend-modal.component';
-6
-import {customerFeatureKey, reducer} from './store/friend.reducer';
-import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { friendFeatureKey, reducer } from './store/friend.reducer';
+import { AgeChartComponent } from './components/age-chart/age-chart.component';
 import { WeightChartComponent } from './components/weight-chart/weight-chart.component';
 @NgModule({
   declarations: [
@@ -35,14 +34,14 @@ import { WeightChartComponent } from './components/weight-chart/weight-chart.com
     TableComponent,
     HeaderComponent,
     AddFriendModalComponent,
-    PieChartComponent,
-    WeightChartComponent
+    AgeChartComponent,
+    WeightChartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}, {}),
-    StoreModule.forFeature(customerFeatureKey, reducer),
+    StoreModule.forFeature(friendFeatureKey, reducer),
     BrowserAnimationsModule,
     MatSliderModule,
     FormsModule,
@@ -55,9 +54,9 @@ import { WeightChartComponent } from './components/weight-chart/weight-chart.com
     MatIconModule,
     MatButtonModule,
     MatToolbarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
