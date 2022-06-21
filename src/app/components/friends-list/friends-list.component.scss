@@ -2,19 +2,30 @@
   flex: 1;
   padding: 2em;
   margin: 2em;
+
+  .selectedContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    border: 1px solid #e4e4e4;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    min-height: 340px;
+  }
 }
 
 table {
   width: 100%;
 }
 
-.selectedContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  border: 1px solid #e4e4e4;
-  border-radius: 5px;
-  background-color: #f8f8f8;
-  min-height: 340px;
+@media (max-width: 400px) {
+  .container {
+    padding: 1em;
+    margin: 0;
+
+    .selectedContainer {
+      min-height: 200px;
+    }
+  }
 }

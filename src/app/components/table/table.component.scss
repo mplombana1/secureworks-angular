@@ -13,3 +13,9 @@ table {
   cursor: pointer;
 }
 
+@media (max-width: 400px) {
+  .container {
+    padding: 1em;
+    margin: 0;
+  }
+}

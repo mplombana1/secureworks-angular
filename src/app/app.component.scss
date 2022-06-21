@@ -1,8 +1,24 @@
-.table-container { 
+table {
+  width: 100%;
+}
+
+.table-container {
   display: flex;
 }
-.chart-container{
+
+.chart-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (max-width: 400px) {
+  .table-container {
+    flex-direction: column;
+
+  }
+
+  .chart-container {
+    display: none;
+  }
 }
