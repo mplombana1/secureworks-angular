@@ -11,14 +11,14 @@ export class TableComponent {
   @Input() friends: Friend[] = [];
   displayedColumns = TableHeaders;
   selectedFriends?: Friend[];
-  constructor(private data: DataService) { }
+  constructor(private data: DataService) {}
 
   getUserDetails(user: Friend) {
     if (user) {
-      this.selectedFriends = [];
-      this.selectedFriends = user.friendID.map((id: number) =>
-        this.friends.find((f: Friend) => f.id == id) || {} as Friend
-      )
+      this.selectedFriends = user.friendID.map(
+        (id: number) =>
+          this.friends.find((f: Friend) => f.id == id) || ({} as Friend)
+      );
       this.data.showSelectedFriends(this.selectedFriends);
     }
   }
